@@ -1,6 +1,6 @@
 {
   "name": "@jerome1337/fastify-enforce-routes-pattern",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Fastify plugin that enforces naming pattern for route paths",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
