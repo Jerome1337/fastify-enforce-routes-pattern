@@ -1,0 +1,8 @@
+.github
+.husky
+.releaserc.json
+eslint.config.mjs
+tsconfig.json
+src
+.coverage
+.c8rc.json
