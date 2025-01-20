@@ -65,7 +65,7 @@ describe('fastify-enforce-routes-pattern', async () => {
       await fastify.register(routesPattern, { 'pattern': 'camelCase' });
 
       fastify.get('/userProfile', () => {});
-      fastify.get('/userProfile/:id/paymentHistory', () => {});
+      fastify.get('/userProfile/:id/historyOfPayments', () => {});
       fastify.post('/api/v1/createUser', () => {});
 
       await fastify.ready();
@@ -76,6 +76,40 @@ describe('fastify-enforce-routes-pattern', async () => {
     it('throws error for invalid camelCase routes', async () => {
       await fastify.register(routesPattern, { 'pattern': 'camelCase' });
 
+      assert.throws(() => fastify.get('/api/v1/UserProfile', () => {}), {
+        'name': 'InvalidRouteFormatError',
+      });
+      assert.throws(() => fastify.get('/user-profile', () => {}), {
+        'name': 'InvalidRouteFormatError',
+      });
+      assert.throws(() => fastify.get('/user_profile', () => {}), {
+        'name': 'InvalidRouteFormatError',
+      });
+    });
+  });
+
+  await describe('PascalCase pattern', async () => {
+    it('allows valid PascalCase routes', async () => {
+      await fastify.register(routesPattern, { 'pattern': 'PascalCase' });
+
+      fastify.get('/UserProfile', () => {});
+      fastify.get('/UserProfile/:id/HistoryOfPayments', () => {});
+      fastify.post('/api/v1/CreateUser', () => {});
+
+      await fastify.ready();
+
+      assert.ok(true);
+    });
+
+    it('throws error for invalid PascalCase routes', async () => {
+      await fastify.register(routesPattern, { 'pattern': 'PascalCase' });
+
+      assert.throws(() => fastify.get('/api/v1/userProfile', () => {}), {
+        'name': 'InvalidRouteFormatError',
+      });
+      assert.throws(() => fastify.get('/user-profile', () => {}), {
+        'name': 'InvalidRouteFormatError',
+      });
       assert.throws(() => fastify.get('/user_profile', () => {}), {
         'name': 'InvalidRouteFormatError',
       });
@@ -98,7 +132,13 @@ describe('fastify-enforce-routes-pattern', async () => {
     it('throws error for invalid kebab-case routes', async () => {
       await fastify.register(routesPattern, { 'pattern': 'kebab-case' });
 
-      assert.throws(() => fastify.get('/user_profile', () => {}), {
+      assert.throws(() => fastify.get('/userProfile', () => {}), {
+        'name': 'InvalidRouteFormatError',
+      });
+      assert.throws(() => fastify.get('/UserProfile', () => {}), {
+        'name': 'InvalidRouteFormatError',
+      });
+      assert.throws(() => fastify.get('/api/v1/user_profile', () => {}), {
         'name': 'InvalidRouteFormatError',
       });
     });
