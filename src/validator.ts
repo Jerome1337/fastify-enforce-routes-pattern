@@ -30,8 +30,8 @@ const validatePath = (
     return true;
   }
 
-  // Remove leading slash and split path segments
-  const segments = path.replace(/^\//, '').split('/');
+  // Remove leading slash, split path segments, and filter out empty segments
+  const segments = path.replace(/^\//, '').split('/').filter((segment) => segment);
 
   return segments.every((segment) => {
     // Allow dynamic parameters (e.g., :id)

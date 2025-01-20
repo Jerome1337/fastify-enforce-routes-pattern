@@ -23,6 +23,21 @@ describe('fastify-enforce-routes-pattern', async () => {
     });
   });
 
+  await describe('no specific pattern', async () => {
+    it('allows valid routes without a specific pattern', async () => {
+      await fastify.register(routesPattern);
+
+      fastify.get('/', () => {});
+      fastify.get('/user/', () => {});
+      fastify.get('/user/profile', () => {});
+      fastify.get('/user/profile3', () => {});
+
+      await fastify.ready();
+
+      assert.ok(true);
+    });
+  });
+
   await describe('snake_case pattern', async () => {
     it('allows valid snake_case routes', async () => {
       await fastify.register(routesPattern, { 'pattern': 'snake_case' });
