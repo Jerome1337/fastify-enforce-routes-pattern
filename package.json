@@ -13,6 +13,7 @@
     "lint:fix": "eslint . --fix",
     "pre-commit": "lint-staged",
     "prepare": "husky",
+    "release": "semantic-release",
     "test": "node --test --require ts-node/register src/**/index.test.ts",
     "test:coverage": "c8 node --test --require ts-node/register src/**/index.test.ts",
     "test:watch": "node --test --watch --require ts-node/register src/**/index.test.ts",
@@ -47,26 +48,26 @@
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
-    "@eslint/js": "^9.31.0",
+    "@eslint/js": "^10.0.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.3",
+    "@semantic-release/github": "^12.0.6",
     "@semantic-release/npm": "^12.0.2",
     "@stylistic/eslint-plugin": "^2.13.0",
-    "@types/node": "^22.16.5",
+    "@types/node": "^24.11.0",
     "c8": "^10.1.3",
-    "eslint": "^9.31.0",
-    "fastify": "^5.4.0",
+    "eslint": "^10.0.2",
+    "fastify": "^5.7.4",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.2",
-    "pino": "^9.7.0",
-    "pino-pretty": "^13.0.0",
-    "semantic-release": "^24.2.7",
+    "pino": "^10.3.1",
+    "pino-pretty": "^13.1.3",
+    "semantic-release": "^25.0.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.38.0"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1"
   },
   "dependencies": {
-    "fastify-plugin": "^5.0.1"
+    "fastify-plugin": "^5.1.0"
   }
 }
